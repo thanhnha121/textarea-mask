@@ -1,0 +1,80 @@
+﻿#mask {
+    position: relative;
+    display: inline-block;
+    font-family: Tahoma;
+}
+
+    #mask > textarea {
+        position: relative;
+        z-index: 1;
+        border-radius: 5px;
+        caret-color: red;
+        overflow: hidden;
+        resize: none;
+        outline: none;
+        border: 1px solid rgba(0,0,0,.2);
+        color: transparent;
+        background: transparent;
+        font-family: inherit;
+        line-height: 1.5;
+        padding: 5px;
+    }
+
+
+    #mask .content-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: auto;
+        z-index: 0;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        font-family: inherit;
+        line-height: 1.5;
+        padding: 5px;
+        word-break: break-word;
+        white-space: pre-wrap;
+    }
+
+        #mask .content-mask > span {
+            color: #fff;
+            border-radius: 20px;
+            padding-bottom: 2px;
+            box-shadow: 1px 1px 5px rgba(0,0,0,.2);
+        }
+
+    #mask > .mask-array {
+        position: absolute;
+        padding: 10px;
+        border: 1px solid rgba(0,0,0,.2);
+        background: #fff;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, .1);
+    }
+
+        #mask > .mask-array ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 300px;
+            min-width: 180px;
+            overflow: auto;
+        }
+
+            #mask > .mask-array ul li {
+                margin: 0;
+                height: 20px;
+                padding: 5px;
+                cursor: pointer;
+            }
+            #mask > .mask-array ul li:hover {
+                background: #eee;
+            }
+
+                #mask > .mask-array ul li span {
+                    color: #fff;
+                    border-radius: 20px;
+                    padding: 0px 3px 2px 3px;
+                    box-shadow: 1px 1px 5px rgba(0,0,0,.2);
+                }

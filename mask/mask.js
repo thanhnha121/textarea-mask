@@ -1,0 +1,285 @@
+﻿/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+/*!
+	Autosize 3.0.20
+	license: MIT
+	http://www.jacklmoore.com/autosize
+*/
+!function (e, t) { if ("function" == typeof define && define.amd) define(["exports", "module"], t); else if ("undefined" != typeof exports && "undefined" != typeof module) t(exports, module); else { var n = { exports: {} }; t(n.exports, n), e.autosize = n.exports } }(this, function (e, t) { "use strict"; function n(e) { function t() { var t = window.getComputedStyle(e, null); "vertical" === t.resize ? e.style.resize = "none" : "both" === t.resize && (e.style.resize = "horizontal"), s = "content-box" === t.boxSizing ? -(parseFloat(t.paddingTop) + parseFloat(t.paddingBottom)) : parseFloat(t.borderTopWidth) + parseFloat(t.borderBottomWidth), isNaN(s) && (s = 0), l() } function n(t) { var n = e.style.width; e.style.width = "0px", e.offsetWidth, e.style.width = n, e.style.overflowY = t } function o(e) { for (var t = []; e && e.parentNode && e.parentNode instanceof Element;)e.parentNode.scrollTop && t.push({ node: e.parentNode, scrollTop: e.parentNode.scrollTop }), e = e.parentNode; return t } function r() { var t = e.style.height, n = o(e), r = document.documentElement && document.documentElement.scrollTop; e.style.height = "auto"; var i = e.scrollHeight + s; return 0 === e.scrollHeight ? void (e.style.height = t) : (e.style.height = i + "px", u = e.clientWidth, n.forEach(function (e) { e.node.scrollTop = e.scrollTop }), void (r && (document.documentElement.scrollTop = r))) } function l() { r(); var t = Math.round(parseFloat(e.style.height)), o = window.getComputedStyle(e, null), i = Math.round(parseFloat(o.height)); if (i !== t ? "visible" !== o.overflowY && (n("visible"), r(), i = Math.round(parseFloat(window.getComputedStyle(e, null).height))) : "hidden" !== o.overflowY && (n("hidden"), r(), i = Math.round(parseFloat(window.getComputedStyle(e, null).height))), a !== i) { a = i; var l = d("autosize:resized"); try { e.dispatchEvent(l) } catch (e) { } } } if (e && e.nodeName && "TEXTAREA" === e.nodeName && !i.has(e)) { var s = null, u = e.clientWidth, a = null, p = function () { e.clientWidth !== u && l() }, c = function (t) { window.removeEventListener("resize", p, !1), e.removeEventListener("input", l, !1), e.removeEventListener("keyup", l, !1), e.removeEventListener("autosize:destroy", c, !1), e.removeEventListener("autosize:update", l, !1), Object.keys(t).forEach(function (n) { e.style[n] = t[n] }), i.delete(e) }.bind(e, { height: e.style.height, resize: e.style.resize, overflowY: e.style.overflowY, overflowX: e.style.overflowX, wordWrap: e.style.wordWrap }); e.addEventListener("autosize:destroy", c, !1), "onpropertychange" in e && "oninput" in e && e.addEventListener("keyup", l, !1), window.addEventListener("resize", p, !1), e.addEventListener("input", l, !1), e.addEventListener("autosize:update", l, !1), e.style.overflowX = "hidden", e.style.wordWrap = "break-word", i.set(e, { destroy: c, update: l }), t() } } function o(e) { var t = i.get(e); t && t.destroy() } function r(e) { var t = i.get(e); t && t.update() } var i = "function" == typeof Map ? new Map : function () { var e = [], t = []; return { has: function (t) { return e.indexOf(t) > -1 }, get: function (n) { return t[e.indexOf(n)] }, set: function (n, o) { e.indexOf(n) === -1 && (e.push(n), t.push(o)) }, delete: function (n) { var o = e.indexOf(n); o > -1 && (e.splice(o, 1), t.splice(o, 1)) } } }(), d = function (e) { return new Event(e, { bubbles: !0 }) }; try { new Event("test") } catch (e) { d = function (e) { var t = document.createEvent("Event"); return t.initEvent(e, !0, !1), t } } var l = null; "undefined" == typeof window || "function" != typeof window.getComputedStyle ? (l = function (e) { return e }, l.destroy = function (e) { return e }, l.update = function (e) { return e }) : (l = function (e, t) { return e && Array.prototype.forEach.call(e.length ? e : [e], function (e) { return n(e, t) }), e }, l.destroy = function (e) { return e && Array.prototype.forEach.call(e.length ? e : [e], o), e }, l.update = function (e) { return e && Array.prototype.forEach.call(e.length ? e : [e], r), e }), t.exports = l });
+
+
+
+/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+/* GET CARET POSITION */
+jQuery.fn.caret = function (e) { var t = this[0], n = t && "true" === t.contentEditable; if (0 != arguments.length) return t && (-1 == e && (e = this[n ? "text" : "val"]().length), window.getSelection ? n ? (t.focus(), window.getSelection().collapse(t.firstChild, e)) : t.setSelectionRange(e, e) : document.body.createTextRange && (n ? ((a = document.body.createTextRange()).moveToElementText(t), a.moveStart("character", e), a.collapse(!0), a.select()) : ((a = t.createTextRange()).move("character", e), a.select())), n || t.focus()), this; if (t) { if (window.getSelection) return n ? (t.focus(), (c = (o = window.getSelection().getRangeAt(0)).cloneRange()).selectNodeContents(t), c.setEnd(o.endContainer, o.endOffset), c.toString().length) : t.selectionStart; if (document.selection) { if (t.focus(), n) { var o = document.selection.createRange(); return (c = document.body.createTextRange()).moveToElementText(t), c.setEndPoint("EndToEnd", o), c.text.length } e = 0; var c, a = t.createTextRange(), r = (c = document.selection.createRange().duplicate()).getBookmark(); for (a.moveToBookmark(r); 0 !== a.moveStart("character", -1);)e++; return e } if (t.selectionStart) return t.selectionStart } };
+/* END GET CARET POSITION */
+
+
+
+/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+/* MAIN */
+// {}
+var pattern1SU = /\{\{[\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\}\}/g;
+var pattern1U = /\{\{[\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\}\}/g;
+var pattern1S = /\{\{[\w\s]+\}\}/g;
+var pattern1 = /\{\{[\w]+\}\}/g;
+// []
+var pattern2SU = /\[\[[\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\]\]/g;
+var pattern2U = /\[\[[\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\]\]/g;
+var pattern2S = /\[\[[\w\s]+\]\]/g;
+var pattern2 = /\[\[[\w]+\]\]/g;
+// <>
+//var pattern3SU = /\<\<[\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\>\>/g;
+//var pattern3U = /\<\<[\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\>\>/g;
+//var pattern3S = /\<\<[\w\s]+\>\>/g;
+//var pattern3 = /\<\<[\w]+\>\>/g;
+// ()
+var pattern4SU = /\(\([\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\)\)/g;
+var pattern4U = /\(\([\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\)\)/g;
+var pattern4S = /\(\([\w\s]+\)\)/g;
+var pattern4 = /\(\([\w]+\)\)/g;
+
+function setSelectionRange(input, selectionStart, selectionEnd) {
+  if (input.setSelectionRange) {
+    input.focus();
+    input.setSelectionRange(selectionStart, selectionEnd);
+  }
+  else if (input.createTextRange) {
+    var range = input.createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', selectionEnd);
+    range.moveStart('character', selectionStart);
+    range.select();
+  }
+}
+
+function setCaretToPos(input, pos) {
+  setSelectionRange(input, pos, pos);
+}
+
+$(document).ready(function () {
+  initMask($('#mask'),
+    {
+      patern: '()',
+      unicode: false,
+      color: 'steelblue'
+    },
+    ['animal', 'color', 'bike', 'staff', 'staff', 'staff', 'staff', 'staff', 'staff', 'staff', 'staff']
+  );
+});
+
+function initMask(selector, config, array = undefined) {
+  autosize(selector.find('textarea'));
+  selector.append(`
+      <div class="content-mask"></div>
+    `);
+
+  buildMaskArray(selector, config, array);
+
+  var patern = configMask(selector, config);
+  maskActionCatching(selector, config, patern);
+}
+
+function buildMaskArray(selector, config, array) {
+  var color = (config && config.color) ? config.color : '#906d60';
+  var patern = (config && config.patern) ? config.patern : '{}';
+  selector.append(`
+      <div class="mask-array"><ul></ul></div>
+    `);
+
+  if (array) {
+    array.forEach((item, index) => {
+      selector.find('.mask-array ul').append(
+        `
+          <li><span style="background: ` + color + `;">` + patern.charAt(0) + patern.charAt(0) + ' ' + item + ' ' + patern.charAt(1) + patern.charAt(1) + `</span>
+            <i title="Remove" id="mask-item` + index + `" onclick="removeMaskItem(` + index + `, event)" style="float: right; font-style: normal; margin-right: 10px; color: red;">x</i>
+          </li>
+        `
+      );
+    });
+  }
+}
+
+function removeMaskItem(index, e) {
+
+}
+
+function configMask(selector, config) {
+  var width = (config && config.width) ? config.width : 300;
+  var height = (config && config.height) ? config.height : 110;
+  var fontSize = (config && config.fontSize) ? config.fontSize : '15';
+
+  selector.find('textarea').css("min-width", width + 'px');
+  selector.find('textarea').css("min-height", height + 'px');
+  selector.find('textarea').css("font-size", fontSize + 'px');
+
+  selector.find('.content-mask').css("font-size", fontSize + 'px');
+  var maskPatern;
+  switch (config.patern) {
+    case '{}':
+      switch (config.unicode) {
+        case true:
+          switch (config.spacing) {
+            case true:
+              maskPatern = pattern1SU;
+              break;
+            case false:
+              maskPatern = pattern1S;
+              break;
+            default:
+              maskPatern = pattern1SU;
+          }
+        case false:
+          switch (config.spacing) {
+            case true:
+              maskPatern = pattern1U;
+              break;
+            case false:
+              maskPatern = pattern1;
+              break;
+            default:
+              maskPatern = pattern1U;
+          }
+      }
+      break;
+    case '[]':
+      switch (config.unicode) {
+        case true:
+          switch (config.spacing) {
+            case true:
+              maskPatern = pattern2SU;
+              break;
+            case false:
+              maskPatern = pattern2S;
+              break;
+            default:
+              maskPatern = pattern2SU;
+          }
+        case false:
+          switch (config.spacing) {
+            case true:
+              maskPatern = pattern2U;
+              break;
+            case false:
+              maskPatern = pattern2;
+              break;
+            default:
+              maskPatern = pattern2U;
+          }
+      }
+      break;
+    //    case '<>':
+    //      switch (config.unicode) {
+    //        case true:
+    //          switch (config.spacing) {
+    //            case true:
+    //              maskPatern = pattern3SU;
+    //              break;
+    //            case false:
+    //              maskPatern = pattern3S;
+    //              break;
+    //            default:
+    //              maskPatern = pattern3SU;
+    //          }
+    //        case false:
+    //          switch (config.spacing) {
+    //            case true:
+    //              maskPatern = pattern3U;
+    //              break;
+    //            case false:
+    //              maskPatern = pattern3;
+    //              break;
+    //            default:
+    //              maskPatern = pattern3U;
+    //          }
+    //      }
+    //      break;
+    case '()':
+      switch (config.unicode) {
+        case true:
+          switch (config.spacing) {
+            case true:
+              maskPatern = pattern4SU;
+              break;
+            case false:
+              maskPatern = pattern4S;
+              break;
+            default:
+              maskPatern = pattern4SU;
+          }
+        case false:
+          switch (config.spacing) {
+            case true:
+              maskPatern = pattern4U;
+              break;
+            case false:
+              maskPatern = pattern4;
+              break;
+            default:
+              maskPatern = pattern4U;
+          }
+      }
+      break;
+    default:
+      console.log('Not supported patern, must be {} / [] / ()');
+  }
+  return maskPatern;
+}
+
+function maskActionCatching(selector, config, patern) {
+  selector.keypress(function (event) {
+    maskEventHandler(selector, config, event, patern);
+  })
+    .keydown(function (event) {
+      if (event.keyCode === 8
+        || event.keyCode === 46
+        || event.keyCode === 86
+        || event.keyCode === 88
+      ) {
+        maskEventHandler(selector, config, event, patern);
+      }
+    });
+}
+
+function maskEventHandler(selector, config, e, patern) {
+  setTimeout(() => {
+    doMask(selector, config, patern);
+  }, 1);
+}
+
+function doMask(selector, config, patern) {
+  var val = selector.find('textarea').val().replace(/(?:\r\n|\r|\n)/g, '<br />');
+  if (val === '') {
+    selector.find('.content-mask').html(val);
+    return;
+  }
+  var matches = val.match(patern);
+  if (!matches) {
+    selector.find('.content-mask').html(val);
+  } else {
+    var count = 0;
+    var color = (config && config.color) ? config.color : '#906d60';
+    matches.forEach(item => {
+      val = val.replaceAllParam(item, '<span style=\'background: ' + color + '\'>' + item + '</span>');
+      count++;
+      if (count === matches.length) {
+        selector.find('.content-mask').html(val);
+      }
+    });
+  }
+}
+
+String.prototype.replaceAllParam = function (input, replaceBy) {
+  var split = this.split(input);
+  var result = '';
+  for (var i = 0; i <= split.length - 2; i++) {
+    result += (split[i] + replaceBy);
+  }
+  result += split[split.length - 1];
+  return result;
+};

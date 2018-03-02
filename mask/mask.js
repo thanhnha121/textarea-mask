@@ -24,25 +24,52 @@ jQuery.fn.caret = function (e) { var t = this[0], n = t && "true" === t.contentE
 /*-----------------------------------------------*/
 /* MAIN */
 // {}
-var pattern1SU = /\{\{[\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\}\}/g;
-var pattern1U = /\{\{[\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\}\}/g;
+var pattern1SU = /\{\{[\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\}\}/g;
+var pattern1U = /\{\{[\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\}\}/g;
 var pattern1S = /\{\{[\w\s]+\}\}/g;
 var pattern1 = /\{\{[\w]+\}\}/g;
 // []
-var pattern2SU = /\[\[[\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\]\]/g;
-var pattern2U = /\[\[[\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\]\]/g;
+var pattern2SU = /\[\[[\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\]\]/g;
+var pattern2U = /\[\[[\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\]\]/g;
 var pattern2S = /\[\[[\w\s]+\]\]/g;
 var pattern2 = /\[\[[\w]+\]\]/g;
-// <>
-//var pattern3SU = /\<\<[\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\>\>/g;
-//var pattern3U = /\<\<[\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\>\>/g;
-//var pattern3S = /\<\<[\w\s]+\>\>/g;
-//var pattern3 = /\<\<[\w]+\>\>/g;
 // ()
-var pattern4SU = /\(\([\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\)\)/g;
-var pattern4U = /\(\([\w\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\)\)/g;
+var pattern4SU = /\(\([\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\)\)/g;
+var pattern4U = /\(\([\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+\)\)/g;
 var pattern4S = /\(\([\w\s]+\)\)/g;
 var pattern4 = /\(\([\w]+\)\)/g;
+
+// {}
+var maskMatchL1SU = /\{\{([\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?((?!\}).)*$/g;
+var maskMatchL1U = /\{\{([\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?((?!\}).)*$/g;
+var maskMatchL1S = /\{\{([\w\s]+)?((?!\}).)*$/g;
+var maskMatchL1 = /\{\{([\w]+)?((?!\}).)*$/g;
+// []
+var maskMatchL2SU = /\[\[([\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?((?!\]).)*$/g;
+var maskMatchL2U = /\[\[([\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?((?!\]).)*$/g;
+var maskMatchL2S = /\[\[([\w\s]+)?((?!\]).)*$/g;
+var maskMatchL2 = /\[\[([\w]+)?((?!\]).)*$/g;
+// ()
+var maskMatchL4SU = /\(\(([\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?((?!\)).)*$/g;
+var maskMatchL4U = /\(\(([\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?((?!\)).)*$/g;
+var maskMatchL4S = /\(\(([\w\s]+)?((?!\)).)*$/g;
+var maskMatchL4 = /\(\(([\w]+)?((?!\)).)*$/g;
+
+// {}
+var maskMatchR1SU = /^((?!\{))([\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\}\}/g;
+var maskMatchR1U = /^((?!\{))([\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\}\}/g;
+var maskMatchR1S = /^((?!\{))([\w\s]+)?\}\}/g;
+var maskMatchR1 = /^((?!\{))([\w\s]+)?\}\}/g;
+// []
+var maskMatchR2SU = /^((?!\[))([\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\]\]/g;
+var maskMatchR2U = /^((?!\[))([\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\]\]/g;
+var maskMatchR2S = /^((?!\[))([\w\s]+)?\]\]/g;
+var maskMatchR2 = /^((?!\[))([\w\s]+)?\]\]/g;
+// ()
+var maskMatchR4SU = /^((?!\())([\w\sẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\)\)/g;
+var maskMatchR4U = /^((?!\())([\wẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\)\)/g;
+var maskMatchR4S = /^((?!\())([\w\s]+)?\)\)/g;
+var maskMatchR4 = /^((?!\())([\w\s]+)?\)\)/g;
 
 function setSelectionRange(input, selectionStart, selectionEnd) {
   if (input.setSelectionRange) {
@@ -63,17 +90,35 @@ function setCaretToPos(input, pos) {
 }
 
 $(document).ready(function () {
-  initMask($('#mask'),
-    {
-      patern: '()',
-      unicode: false,
-      color: 'steelblue'
-    },
-    ['animal', 'color', 'bike', 'staff', 'staff', 'staff', 'staff', 'staff', 'staff', 'staff', 'staff']
+  initMask(
+    $('#mask'),
+    ['animal', 'color', 'bike', 'cat', 'dog', 'car', 'school', 'name', 'staff', 'art', 'whatever']
   );
 });
 
-function initMask(selector, config, array = undefined) {
+function initMask(selector, array = undefined, config = undefined) {
+  if (selector === undefined || selector === null) {
+    console.log('Selector was not undefined!');
+    return;
+  }
+  if (array === null || array === undefined) {
+    console.log('Tag Array Required!');
+    return;
+  }
+  if (config === undefined || config === null) {
+    config = {
+      patern: '{}',
+      unicode: false,
+      color: 'steelblue'
+    }
+  } else if (config.patern === undefined || config.patern === null) {
+    config.patern = '{}';
+  } else if (config.unicode === undefined || config.unicode === null) {
+    config.unicode = false;
+  } else if (config.color === undefined || config.color === null) {
+    config.color = 'steelblue';
+  }
+
   autosize(selector.find('textarea'));
   selector.append(`
       <div class="content-mask"></div>
@@ -96,8 +141,7 @@ function buildMaskArray(selector, config, array) {
     array.forEach((item, index) => {
       selector.find('.mask-array ul').append(
         `
-          <li><span style="background: ` + color + `;">` + patern.charAt(0) + patern.charAt(0) + ' ' + item + ' ' + patern.charAt(1) + patern.charAt(1) + `</span>
-            <i title="Remove" id="mask-item` + index + `" onclick="removeMaskItem(` + index + `, event)" style="float: right; font-style: normal; margin-right: 10px; color: red;">x</i>
+          <li onclick="maskArrayItemClick('` + patern.charAt(0) + patern.charAt(0) + item + patern.charAt(1) + patern.charAt(1) + `')"><span style="background: ` + color + `;">` + patern.charAt(0) + patern.charAt(0) + ' ' + item + ' ' + patern.charAt(1) + patern.charAt(1) + `</span>
           </li>
         `
       );
@@ -127,23 +171,35 @@ function configMask(selector, config) {
           switch (config.spacing) {
             case true:
               maskPatern = pattern1SU;
+              config.maskMatchL = maskMatchL1SU;
+              config.maskMatchR = maskMatchR1SU;
               break;
             case false:
               maskPatern = pattern1S;
+              config.maskMatchL = maskMatchL1S;
+              config.maskMatchR = maskMatchR1S;
               break;
             default:
               maskPatern = pattern1SU;
+              config.maskMatchL = maskMatchL1SU;
+              config.maskMatchR = maskMatchR1SU;
           }
         case false:
           switch (config.spacing) {
             case true:
               maskPatern = pattern1U;
+              config.maskMatchL = maskMatchL1U;
+              config.maskMatchR = maskMatchR1U;
               break;
             case false:
               maskPatern = pattern1;
+              config.maskMatchL = maskMatchL1;
+              config.maskMatchR = maskMatchR1;
               break;
             default:
               maskPatern = pattern1U;
+              config.maskMatchL = maskMatchL1U;
+              config.maskMatchR = maskMatchR1U;
           }
       }
       break;
@@ -153,75 +209,73 @@ function configMask(selector, config) {
           switch (config.spacing) {
             case true:
               maskPatern = pattern2SU;
+              config.maskMatchL = maskMatchL2SU;
+              config.maskMatchR = maskMatchR2SU;
               break;
             case false:
               maskPatern = pattern2S;
+              config.maskMatchL = maskMatchL2S;
+              config.maskMatchR = maskMatchR2S;
               break;
             default:
               maskPatern = pattern2SU;
+              config.maskMatchL = maskMatchL2SU;
+              config.maskMatchR = maskMatchR2SU;
           }
         case false:
           switch (config.spacing) {
             case true:
               maskPatern = pattern2U;
+              config.maskMatchL = maskMatchL2U;
+              config.maskMatchR = maskMatchR2U;
               break;
             case false:
               maskPatern = pattern2;
+              config.maskMatchL = maskMatchL2;
+              config.maskMatchR = maskMatchR2;
               break;
             default:
               maskPatern = pattern2U;
+              config.maskMatchL = maskMatchL2U;
+              config.maskMatchR = maskMatchR2U;
           }
       }
       break;
-    //    case '<>':
-    //      switch (config.unicode) {
-    //        case true:
-    //          switch (config.spacing) {
-    //            case true:
-    //              maskPatern = pattern3SU;
-    //              break;
-    //            case false:
-    //              maskPatern = pattern3S;
-    //              break;
-    //            default:
-    //              maskPatern = pattern3SU;
-    //          }
-    //        case false:
-    //          switch (config.spacing) {
-    //            case true:
-    //              maskPatern = pattern3U;
-    //              break;
-    //            case false:
-    //              maskPatern = pattern3;
-    //              break;
-    //            default:
-    //              maskPatern = pattern3U;
-    //          }
-    //      }
-    //      break;
     case '()':
       switch (config.unicode) {
         case true:
           switch (config.spacing) {
             case true:
               maskPatern = pattern4SU;
+              config.maskMatchL = maskMatchL4SU;
+              config.maskMatchR = maskMatchR4SU;
               break;
             case false:
               maskPatern = pattern4S;
+              config.maskMatchL = maskMatchL4S;
+              config.maskMatchR = maskMatchR4S;
               break;
             default:
               maskPatern = pattern4SU;
+              config.maskMatchL = maskMatchL4SU;
+              config.maskMatchR = maskMatchR4SU;
           }
         case false:
           switch (config.spacing) {
             case true:
               maskPatern = pattern4U;
+              config.maskMatchL = maskMatchL4U;
+              config.maskMatchR = maskMatchR4U;
               break;
             case false:
               maskPatern = pattern4;
+              config.maskMatchL = maskMatchL4;
+              config.maskMatchR = maskMatchR4;
               break;
             default:
               maskPatern = pattern4U;
+              config.maskMatchL = maskMatchL4U;
+              config.maskMatchR = maskMatchR4U;
           }
       }
       break;
@@ -232,23 +286,17 @@ function configMask(selector, config) {
 }
 
 function maskActionCatching(selector, config, patern) {
-  selector.keypress(function (event) {
+  selector.keydown(function (event) {
+    if (event.which === 27) {
+      selector.find('.mask-array').hide();
+    } else {
+      maskEventHandler(selector, config, event, patern);
+    }
+    curMask = selector;
+  }).click(function (event) {
     maskEventHandler(selector, config, event, patern);
-  })
-    .keydown(function (event) {
-      if (event.keyCode === 8
-        || event.keyCode === 46
-        || event.keyCode === 86
-        || event.keyCode === 88
-        || event.keyCode === 90
-        || event.keyCode === 37
-        || event.keyCode === 38
-        || event.keyCode === 39
-        || event.keyCode === 40
-      ) {
-        maskEventHandler(selector, config, event, patern);
-      }
-    });
+    curMask = selector;
+  });
 }
 
 function maskEventHandler(selector, config, e, patern) {
@@ -257,21 +305,51 @@ function maskEventHandler(selector, config, e, patern) {
   }, 1);
 }
 
-var maskMatchL =
-  /\(\(([\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?/g;
+var maskMatchL;
+var maskMatchR;
 
-var maskMatchR =
-  /^((?!\())([\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\)\)/g;
 function doMask(selector, config, patern, e) {
-  var val = selector.find('textarea').val().replace(/(?:\r\n|\r|\n)/g, '<br />');
+  var val = selector.find('textarea').val();
   if (val === '') {
     selector.find('.content-mask').html(val);
     return;
   }
   var cursor = $(e.target).caret();
-  console.log(val.substring(0, cursor).match(maskMatchL));
-  console.log(val.substring(cursor, val.length));
-  console.log(val.substring(cursor, val.length).match(maskMatchR));
+  var matchForSuggestL = val.substring(0, cursor).match(config.maskMatchL);
+  var matchForSuggestR = val.substring(cursor, val.length).match(config.maskMatchR);
+
+  if (matchForSuggestL && matchForSuggestL.length > 0
+    && matchForSuggestR && matchForSuggestR.length > 0) {
+
+    var list = selector.find('.content-mask > span');
+    for (var l = 0; l < list.length; l++) {
+      if (list.eq(l).attr('id').endsWith('-' + (cursor + matchForSuggestR[0].length))) {
+        var position = list.eq(l).position();
+        var top = position.top;
+        var left = position.left;
+        selector.find('.mask-array').css({
+          'top': (top + 25) + 'px',
+          'left': left + 'px'
+        });
+        curMaskRange = {
+          left: list.eq(l).attr('id').split('-')[2],
+          right: list.eq(l).attr('id').split('-')[3]
+        };
+        curMaskCursor = cursor;
+        curMaskConfig = config;
+        selector.find('.mask-array').show();
+        setTimeout(() => {
+          updateMaskDisplayArrayItem();
+        }, 1);
+        break;
+      }
+    }
+  } else {
+    selector.find('.mask-array').hide();
+  }
+
+  val = val.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
   var matches = val.match(patern);
   if (!matches) {
     selector.find('.content-mask').html(val);
@@ -297,6 +375,7 @@ String.prototype.replaceAllParam = function (input, color) {
 
   var result = '';
   for (var i = 0; i <= split.length - 2; i++) {
+
     result += (split[i]
       + `<span style="background: ` + color
       + `" id="mask-item-` + extractContent(result + split[i]).length + '-' + (extractContent(result) + extractContent(split[i]) + input).length + `">` + input
@@ -307,7 +386,42 @@ String.prototype.replaceAllParam = function (input, color) {
 };
 
 function extractContent(s) {
-  var span = document.createElement('span');
-  span.innerHTML = s;
-  return span.textContent || span.innerText;
-};
+  var div = document.createElement('div');
+  div.innerHTML = s;
+  return div.innerText;
+}
+
+var curMask;
+var curMaskRange;
+var curMaskCursor;
+var curMaskConfig;
+function maskArrayItemClick(item) {
+  var val = curMask.find('textarea').val();
+  val = val.substring(0, curMaskRange.left) + item + val.substring(curMaskRange.right, val.length);
+  curMask.find('textarea').val(val);
+}
+
+function updateMaskDisplayArrayItem() {
+  var val = curMask.find('textarea').val();
+  var filter = val.substring((curMaskRange.left - 0) + 2, curMaskCursor);
+
+  var list = curMask.find('.mask-array > ul li span');
+  var patern = (curMaskConfig && curMaskConfig.patern) ? curMaskConfig.patern : '{}';
+
+  var count = 0;
+  for (var i = 0; i < list.length; i++) {
+    if (!(list.eq(i).text().toLowerCase().replace(patern.charAt(0) + patern.charAt(0), '')
+      .replace(patern.charAt(1) + patern.charAt(1), '').trim().includes(filter.toLowerCase()))) {
+      list.eq(i).parent('li').hide();
+      count++;
+    } else {
+      list.eq(i).parent('li').show();
+    }
+  }
+  if (count === list.length) {
+    curMask.find('.mask-array > ul li#empty-li').remove();
+    curMask.find('.mask-array > ul').append("<li id='empty-li'><i>Empty!</i></li>");
+  } else {
+    curMask.find('.mask-array > ul li#empty-li').remove();
+  }
+}

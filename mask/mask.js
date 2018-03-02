@@ -240,6 +240,11 @@ function maskActionCatching(selector, config, patern) {
         || event.keyCode === 46
         || event.keyCode === 86
         || event.keyCode === 88
+        || event.keyCode === 90
+        || event.keyCode === 37
+        || event.keyCode === 38
+        || event.keyCode === 39
+        || event.keyCode === 40
       ) {
         maskEventHandler(selector, config, event, patern);
       }
@@ -248,38 +253,61 @@ function maskActionCatching(selector, config, patern) {
 
 function maskEventHandler(selector, config, e, patern) {
   setTimeout(() => {
-    doMask(selector, config, patern);
+    doMask(selector, config, patern, e);
   }, 1);
 }
 
-function doMask(selector, config, patern) {
+var maskMatchL =
+  /\(\(([\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?/g;
+
+var maskMatchR =
+  /^((?!\())([\w\s\[\]ẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+)?\)\)/g;
+function doMask(selector, config, patern, e) {
   var val = selector.find('textarea').val().replace(/(?:\r\n|\r|\n)/g, '<br />');
   if (val === '') {
     selector.find('.content-mask').html(val);
     return;
   }
+  var cursor = $(e.target).caret();
+  console.log(val.substring(0, cursor).match(maskMatchL));
+  console.log(val.substring(cursor, val.length));
+  console.log(val.substring(cursor, val.length).match(maskMatchR));
   var matches = val.match(patern);
   if (!matches) {
     selector.find('.content-mask').html(val);
   } else {
-    var count = 0;
-    var color = (config && config.color) ? config.color : '#906d60';
-    matches.forEach(item => {
-      val = val.replaceAllParam(item, '<span style=\'background: ' + color + '\'>' + item + '</span>');
-      count++;
-      if (count === matches.length) {
-        selector.find('.content-mask').html(val);
+    for (var i = 0; i < matches.length - 1; i++) {
+      for (var j = i + 1; j < matches.length; j++) {
+        if (matches[i] === matches[j]) {
+          matches.splice(j, 1);
+          j--;
+        }
       }
-    });
+    }
+    var color = (config && config.color) ? config.color : '#906d60';
+    for (var k = 0; k < matches.length; k++) {
+      val = val.replaceAllParam(matches[k], color);
+    }
+    selector.find('.content-mask').html(val);
   }
 }
 
-String.prototype.replaceAllParam = function (input, replaceBy) {
+String.prototype.replaceAllParam = function (input, color) {
   var split = this.split(input);
+
   var result = '';
   for (var i = 0; i <= split.length - 2; i++) {
-    result += (split[i] + replaceBy);
+    result += (split[i]
+      + `<span style="background: ` + color
+      + `" id="mask-item-` + extractContent(result + split[i]).length + '-' + (extractContent(result) + extractContent(split[i]) + input).length + `">` + input
+      + `</span>`);
   }
   result += split[split.length - 1];
   return result;
+};
+
+function extractContent(s) {
+  var span = document.createElement('span');
+  span.innerHTML = s;
+  return span.textContent || span.innerText;
 };

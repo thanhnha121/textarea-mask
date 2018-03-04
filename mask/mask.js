@@ -94,6 +94,10 @@ $(document).ready(function () {
     $('#mask'),
     ['animal', 'color', 'bike', 'cat', 'dog', 'car', 'school', 'name', 'staff', 'art', 'whatever']
   );
+  initMask(
+    $('#mask2'),
+    ['animal', 'color', 'bike', 'cat', 'dog', 'car', 'school', 'name', 'staff', 'art', 'whatever']
+  );
 });
 
 function initMask(selector, array = undefined, config = undefined) {
@@ -111,18 +115,28 @@ function initMask(selector, array = undefined, config = undefined) {
       unicode: false,
       color: 'steelblue'
     }
-  } else if (config.patern === undefined || config.patern === null) {
+  } else if (config.patern === undefined || config.patern === null || typeof config.append !== 'string') {
     config.patern = '{}';
-  } else if (config.unicode === undefined || config.unicode === null) {
+  } else if (config.unicode === undefined || config.unicode === null || typeof config.append !== 'boolean') {
     config.unicode = false;
-  } else if (config.color === undefined || config.color === null) {
+  } else if (config.color === undefined || config.color === null || typeof config.append !== 'string') {
     config.color = 'steelblue';
   }
 
+  selector.attr({
+    'style': 'position: relative; display: inline-block;'
+  });
+  selector.find('textarea').attr({
+    'style': 'position: relative; z-index: 1; border-radius: 5px; caret-color: red; overflow: hidden; resize: none; outline: none; border: 1px solid rgba(0,0,0,.2); color: transparent; background: transparent; font-family: inherit; line-height: 1.5; padding: 5px;'
+  });
+
   autosize(selector.find('textarea'));
   selector.append(`
-      <div class="content-mask"></div>
+      <div class="content-mask" style="color: #fff; border-radius: 20px; padding-bottom: 2px; box-shadow: 1px 1px 5px rgba(0,0,0,.2);"></div>
     `);
+  selector.find('.content-mask').attr({
+    'style': 'position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: auto; z-index: 0; border: 1px solid transparent; border-radius: 5px; font-family: inherit; line-height: 1.5; padding: 5px; word-break: break-word; white-space: pre-wrap;' 
+  });
 
   buildMaskArray(selector, config, array);
 
@@ -134,14 +148,17 @@ function buildMaskArray(selector, config, array) {
   var color = (config && config.color) ? config.color : '#906d60';
   var patern = (config && config.patern) ? config.patern : '{}';
   selector.append(`
-      <div class="mask-array"><ul></ul></div>
+      <div class="mask-array" style="position: absolute; padding: 10px; border: 1px solid rgba(0,0,0,.2); background: #fff; box-shadow: 2px 2px 10px rgba(0, 0, 0, .1); display: none; z-index: 1;"><ul style="list-style: none; padding: 0; margin: 0; max-height: 300px; min-width: 180px; overflow: auto;"></ul></div>
     `);
 
   if (array) {
     array.forEach((item, index) => {
       selector.find('.mask-array ul').append(
         `
-          <li onclick="maskArrayItemClick('` + patern.charAt(0) + patern.charAt(0) + item + patern.charAt(1) + patern.charAt(1) + `')"><span style="background: ` + color + `;">` + patern.charAt(0) + patern.charAt(0) + ' ' + item + ' ' + patern.charAt(1) + patern.charAt(1) + `</span>
+          <li onclick="maskArrayItemClick('` + patern.charAt(0) + patern.charAt(0) + item + patern.charAt(1) + patern.charAt(1) + `')" 
+            onmouseover="liMaskItemHover(this)"
+            onmouseleave="liMaskItemMouseLeave(this)"
+            style="margin: 0; height: 20px; padding: 5px; cursor: pointer;"><span style="background: ` + color + `; color: #fff; border-radius: 20px; padding: 0px 3px 2px 3px; box-shadow: 1px 1px 5px rgba(0,0,0,.2);">` + patern.charAt(0) + patern.charAt(0) + ' ' + item + ' ' + patern.charAt(1) + patern.charAt(1) + `</span>
           </li>
         `
       );
@@ -149,8 +166,12 @@ function buildMaskArray(selector, config, array) {
   }
 }
 
-function removeMaskItem(index, e) {
+function liMaskItemHover(li) {
+  li.style.background = '#eee';
+}
 
+function liMaskItemMouseLeave(li) {
+  li.style.background = '#fff';
 }
 
 function configMask(selector, config) {
@@ -367,8 +388,20 @@ function doMask(selector, config, patern, e) {
       val = val.replaceAllParam(matches[k], color);
     }
     selector.find('.content-mask').html(val);
+    selector.attr({ 'data-marked': matches.maskJoin() });
   }
 }
+
+Array.prototype.maskJoin = function maskJoin() {
+  var rs = '';
+  for (var i = 0; i < this.length; i++) {
+    rs += this[i].substring(2, this[i].length - 2)
+    if (i < this.length - 1) {
+      rs += ',';
+    }
+  }
+  return rs;
+};
 
 String.prototype.replaceAllParam = function (input, color) {
   var split = this.split(input);
@@ -378,7 +411,7 @@ String.prototype.replaceAllParam = function (input, color) {
 
     result += (split[i]
       + `<span style="background: ` + color
-      + `" id="mask-item-` + extractContent(result + split[i]).length + '-' + (extractContent(result) + extractContent(split[i]) + input).length + `">` + input
+      + `; color: #fff; border-radius: 20px; padding-bottom: 2px; box-shadow: 1px 1px 5px rgba(0,0,0,.2);" id="mask-item-` + extractContent(result + split[i]).length + '-' + (extractContent(result) + extractContent(split[i]) + input).length + `">` + input
       + `</span>`);
   }
   result += split[split.length - 1];
@@ -423,5 +456,14 @@ function updateMaskDisplayArrayItem() {
     curMask.find('.mask-array > ul').append("<li id='empty-li'><i>Empty!</i></li>");
   } else {
     curMask.find('.mask-array > ul li#empty-li').remove();
+  }
+}
+
+function getMaskMarked(selector) {
+  if (selector === undefined || selector === null) {
+    console.log('Selector was undefined!');
+    return undefined;
+  } else {
+    return selector.attr('data-marked').split(',');
   }
 }

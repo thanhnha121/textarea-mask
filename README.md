@@ -6,8 +6,9 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="mask.js"></script>
 ```
-Or:
+### Or:
 ```
+<script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="mask.min.js"></script>
 ```
 

@@ -16,7 +16,7 @@ Or:
 Highlight attributes which was put in your textarea!
 
 ## Usage:
-Place below in your HTML code
+HTML:
 ```
 <div id="mask">
   <textarea></textarea>

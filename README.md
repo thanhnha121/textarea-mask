@@ -44,4 +44,6 @@ To Get Marked Items:
 getMaskMarked(selector);
 // ['animal', 'color',...] 
 ```
-
+## depends on
+### caret plugin (1.1 kB minified).
+### Autosize 3.0.20 | http://www.jacklmoore.com/autosize

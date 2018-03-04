@@ -29,6 +29,7 @@ initMask(
   {
     patern: '{}',                   // match pattern in your textarea
     unicode: false,                 // true to enable match unicode character
+    spacing: false,                 // true to enable match space
     color: 'steelblue'              // background color for each item
   }
   ['animal', 'color', 'bike',...]   // suggestion item

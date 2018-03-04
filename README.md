@@ -46,4 +46,4 @@ getMaskMarked(selector);
 ```
 ## Depends on
 - Caret plugin (1.1 kB minified) | https://github.com/accursoft/caret
-- Autosize 3.0.20 | http://www.jacklmoore.com/autosize
+- Autosize 3.0.20 | https://github.com/jackmoore/autosize

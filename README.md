@@ -1,14 +1,14 @@
 # Textarea Mask
 
 ## Install:
-jQuery Required
+jQuery Required:
 ```
-<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <script src="mask.js"></script>
 ```
 Or:
 ```
-<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <script src="mask.min.js"></script>
 ```
 

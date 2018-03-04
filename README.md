@@ -30,7 +30,7 @@ JS:
 initMask(
   $('#mask'),                       // selector
   {
-    patern: '{}',                   // match pattern in your textarea support {} / [] / ()
+    patern: '{}',                   // match pattern in your textarea, support {} / [] / ()
     unicode: false,                 // true to enable match unicode character
     spacing: false,                 // true to enable match space
     color: 'steelblue'              // background color for each item

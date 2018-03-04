@@ -11,3 +11,8 @@ Or:
 ## How it works
 
 Highlight attributes which was put in your textarea!
+
+Place 
+``<div id="mask">
+    <textarea></textarea>
+  </div>``

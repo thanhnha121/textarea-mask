@@ -1,4 +1,8 @@
 # Textarea Mask
+Highlight attributes / tags which was put in your textarea!
+Attributes / tags suggestions with filter.
+
+![Screenshot](http://sv1.upsieutoc.com/2018/03/04/mask.gif)
 
 ## Install:
 jQuery Required:
@@ -11,12 +15,6 @@ Or:
 <script src="jquery.js"></script>
 <script src="mask.min.js"></script>
 ```
-
-## How it works:
-
-Highlight attributes which was put in your textarea!
-
-![Screenshot](http://sv1.upsieutoc.com/2018/03/04/mask.gif)
 
 ## Usage:
 HTML:

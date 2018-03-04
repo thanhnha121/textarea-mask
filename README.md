@@ -35,3 +35,9 @@ initMask(
 );
   
 ```
+To Get Marked Items:
+```
+getMaskMarked(selector);
+// ['cat', 'dog',...]
+```
+

@@ -1,5 +1,5 @@
 # Textarea Mask
-Highlight attributes / tags which was put in your textarea!
+Highlight attributes / tags which was put in your textarea.
 
 Attributes / tags suggestions with filter.
 

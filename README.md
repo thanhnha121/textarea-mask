@@ -3,7 +3,7 @@ Highlight attributes / tags which was put in your textarea.
 
 Attributes / tags suggestions with filter.
 
-![Screenshot](https://i.imgur.com/hKwvPqB.gifv)
+![Screenshot](https://i.imgur.com/hKwvPqB.gif)
 
 ## Install:
 jQuery Required:
